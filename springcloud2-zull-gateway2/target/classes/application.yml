@@ -1,0 +1,31 @@
+server:
+  port: 8317
+#网关服务的应用名称
+spring:
+  application:
+    name: cloud-zull-gateway
+    #注册中心地址
+eureka:
+  client:
+    #http://localhost:8100/eureka是注册中心的地址
+    service-url:
+      defaultZone: http://127.0.0.1:8110/eureka/,http://127.0.0.1:8120/eureka/,http://127.0.0.1:8130/eureka/
+zuul:
+  routes:
+    api-a:  # api-a 定义转发服务规则
+      path: /api-member-pro/**
+      serviceId: springcloud-member-prod #服务的spring.application.name
+    api-b:   # api-b 定义转发服务规则
+      path: /api-member-custm/**
+      serviceId: springcloud2-member-custm  #服务的spring.application.name
+    api-swagger1:
+      path: /api-swagger1/**
+      serviceId: springcloud-swagger-1
+    api-swagger2:
+        path: /api-swagger2/**
+        serviceId: springcloud-swagger-2
+  #zull服务设置的端口是8016。
+  #当我们在浏览器上访问http://127.0.0.1:8016/api-member-pro/XXXX的时候
+  # 那么zull网关会根据path进行匹配serviceId，并转发到相应的服务请求
+  #如果服务搭建了集群，那么zull是怎么转发，并且该调用哪个服务？
+  #因为zull默认也是整合了ribbon，自动实现了负载均衡的轮询效果

@@ -1,0 +1,22 @@
+#配置端口号
+server:
+  port: 8110
+#配置eureka注册中心
+eureka:
+  instance:
+    #注册中心ip地址  eureka服务端的实例名称
+    hostname: 127.0.0.1
+    #自定义服务名称，不使用cloud自带得
+    instance-id: eureka-server-8110
+  client:
+    #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+    service-url:
+      defaultZone: http://127.0.0.1:8120/eureka/,http://127.0.0.1:8130/eureka/
+    #false表示不向注册中心注册自己。因为我自己就是注册中心，即不需要把自己注册进去。集群的时候是需要设置为true的
+    register-with-eureka: true
+    #false表示自己端就是注册中心，我的职责就是维护服务实例，并不需要去检索服务
+    fetch-registry: true
+#在集群环境下服务应用名称必须一致
+spring:
+  application:
+    name: eureka-server

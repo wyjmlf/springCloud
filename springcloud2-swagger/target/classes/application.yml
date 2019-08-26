@@ -1,0 +1,22 @@
+
+#服务名称(服务注册到eureka名称)
+spring:
+  application:
+    name: springcloud-swagger-1
+eureka:
+  client:
+    #将客户端注册进eureka服务列表内
+    service-url:
+      #http://localhost:8100/eureka为eurekaServer的地址
+      defaultZone: http://127.0.0.1:8110/eureka/,http://127.0.0.1:8120/eureka/,http://127.0.0.1:8130/eureka/
+  #将自己注册到eurekaServer内
+  register-with-eureka: true
+  #检索服务
+  fetch-registry: true
+  instance:
+    #instance-id: member-pro  注意在集群得环境下最好不要设置他，因为注册到eureka中得名称相同了，cloud默认会找最后一个启动得服务
+    prefer-ip-address: true
+server:
+  port: 8128
+swagger:
+  base-package: com.cloud.swagger.ctrl

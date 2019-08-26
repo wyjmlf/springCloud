@@ -1,0 +1,22 @@
+server:
+  port: 8114
+spring:
+  application:
+    name: hystric-custom
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8120/eureka/,http://127.0.0.1:8110/eureka/,http://127.0.0.1:8130/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+#设置fegin客户端调用服务的超时时间
+ribbon:
+  ReadTimeout: 3000
+  ConnectTimeout: 3000
+
+
+feign:
+  hystrix:
+    enabled: true   #开启hystx断路器
