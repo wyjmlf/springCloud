@@ -1,0 +1,33 @@
+server:
+  port: 8330
+spring:
+  application:
+    name: leyou-zull
+eureka:
+  instance:
+    #注册中心ip地址  eureka服务端的实例名称
+    hostname: 127.0.0.1
+    #自定义服务名称，不使用cloud自带得
+    instance-id: leyou-zull
+  client:
+    #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+    service-url:
+      defaultZone: http://127.0.0.1:8200/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+    #注意：一下三种zuul网关得配置方式，第三种最常用得
+zuul:
+  routes:
+    #第一种基于服务名称spring.application.name方式
+    service-product: #路由名称----->定义转发服务规则，可以随便写(一般要习惯写成服务名)
+      path: /leyoupro/**
+      serviceId: leyou-pros
+      #第二种基于url
+    api-url:       #路由名称----->定义转发服务规则，可以随便写(一般要习惯写成服务名)
+      path : /leyoupro_url/**
+      url: http://localhost:8201
+    # 第三种基于服务名称：他的方式是：leyou-pros对应服务得spring.application.name
+    leyou-pros: /prosZuul/**
+    #配置请求前缀，官方推荐使用/api：http://localhost:8330/api/prosZuul/proTest
+  prefix: /api
+

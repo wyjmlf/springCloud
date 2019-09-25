@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * 定义网关过滤器必须继承ZuulFilter抽象类。
  */
-//@Component
+@Component
 public class TokenFilter extends ZuulFilter {
 
     @Value("${server.port}")

@@ -25,6 +25,7 @@
         <module>springboot-swagger</module>
         <module>springcloud2-swagger</module>
         <module>springcloud2-swagger2</module>
+        <module>leyou-springcloud</module>
 
     </modules>
 

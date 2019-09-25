@@ -12,10 +12,10 @@ eureka:
       defaultZone: http://127.0.0.1:8110/eureka/,http://127.0.0.1:8120/eureka/,http://127.0.0.1:8130/eureka/
 zuul:
   routes:
-    api-a:  # api-a 定义转发服务规则
+    api-a:  # api-a 定义转发服务规则，可以随便写(一般要习惯写成服务名)
       path: /api-member-pro/**
       serviceId: springcloud-member-prod #服务的spring.application.name
-    api-b:   # api-b 定义转发服务规则
+    api-b:   # api-b 定义转发服务规则，可以随便写(一般要习惯写成服务名)
       path: /api-member-custm/**
       serviceId: springcloud2-member-custm  #服务的spring.application.name
     api-swagger1:

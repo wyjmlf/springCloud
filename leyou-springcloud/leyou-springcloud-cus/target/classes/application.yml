@@ -1,0 +1,26 @@
+#配置端口号
+server:
+  port: 8202
+#配置eureka注册中心
+eureka:
+  instance:
+    #注册中心ip地址  eureka服务端的实例名称
+    hostname: 127.0.0.1
+    #自定义服务名称，不使用cloud自带得
+    instance-id: leyou-cus
+  client:
+    #设置与Eureka Server交互的地址查询服务和注册服务都需要依赖这个地址。
+    service-url:
+      defaultZone: http://127.0.0.1:8200/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+spring:
+  application:
+    name: leyou-cuss
+#设置fegin客户端调用服务的超时时间
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000
+feign:
+  hystrix:
+    enabled: true   #开启hystx断路器
